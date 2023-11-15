@@ -1,7 +1,5 @@
 package br.edu.infnet.vendasApi.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +18,12 @@ public class InformacaoController {
 
 	@Autowired
 	private InformacaoService informacaoService;
-	
-	@GetMapping(value = "/informacoes")
-	public List<String> obterInformacao(){
-		
-		return new ArrayList<String>(
-					Arrays.asList(
-							"Professor: Elberth Moraes",
-							"Disciplina: Arquitetura Java",
-							"Instituição: Instituto Infnet"
-						)
-				);
+
+	@GetMapping(value = "/lista")
+	public List<Informacao> obterLista(){
+		return informacaoService.obterLista();
 	}
-	
-	
+
 	@PostMapping(value = "/incluir")
 	public Informacao incluir(@RequestBody Informacao informacao) {
 		return informacaoService.incluir(informacao);
